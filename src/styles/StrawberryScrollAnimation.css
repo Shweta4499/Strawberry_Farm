@@ -1,0 +1,15 @@
+.floating-strawberry-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5; /* above content, but non-interactive */
+}
+
+.floating-strawberry-overlay canvas {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+}

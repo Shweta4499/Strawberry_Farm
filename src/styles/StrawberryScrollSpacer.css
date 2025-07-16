@@ -1,0 +1,13 @@
+.strawberry-spacer-section {
+  height: 150vh;
+  background: #fff0f5;
+  position: relative;
+  z-index: 1;
+}
+.strawberry-spacer-section canvas {
+  position: sticky;
+  top: 20vh;
+  width: 100% !important;
+  height: 80vh !important;
+  pointer-events: none;
+}

@@ -1,0 +1,118 @@
+/* src/styles/Hero.css or wherever it's scoped */
+
+/* MAIN HERO SECTION */
+.hero-section {
+  height: 100vh;
+  background: #fff0f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vh 1rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* TEXT CONTAINER */
+.hero-text-wrapper {
+  position: relative;
+  z-index: 2;
+  min-height: 40vh;
+}
+
+/* ADJECTIVE TEXT */
+.hero-adjective {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  color: #d62828;
+  margin-bottom: 1rem;
+}
+
+/* STRAWBERRY TITLE */
+.hero-title {
+  font-size: clamp(5rem, 10vw, 7rem);
+  font-weight: 900;
+  color: #d62828;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* STRAWBERRY LETTER STYLE */
+.strawberry-word {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: #d62828;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* CONTAINER THAT HOLDS THE 3D CANVAS */
+.letter-with-model {
+  position: relative;
+  width: clamp(6rem, 6vw, 8rem); /* ✅ Tighter fit */
+  height: clamp(6rem, 8vw, 7rem);
+  margin-left: -3rem; /* ✅ Reduces space between R and strawberry */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* INVISIBLE PLACEHOLDER LETTER FOR ALIGNMENT */
+.placeholder-letter {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* CANVAS ITSELF */
+.letter-with-model canvas {
+  width: 100% !important;
+  height: 100% !important;
+  filter: drop-shadow(0 0 10px rgba(214, 40, 40, 0.5));
+  pointer-events: none;
+  z-index: 10;
+}
+/* Add this to your CSS (e.g., Hero.css) */
+
+.hero-adjective-wrapper {
+  position: relative;
+  height: 6rem; /* Set based on font size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hidden placeholder to prevent layout shift */
+.typing-placeholder {
+  visibility: hidden;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+}
+
+/* Animated typing text */
+.typing-text {
+  position: absolute;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  color: #d62828;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

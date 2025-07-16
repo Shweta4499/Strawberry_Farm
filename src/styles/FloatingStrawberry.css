@@ -1,0 +1,10 @@
+/* styles/FloatingStrawberry.css */
+.floating-strawberry-canvas {
+  position: fixed;
+  top: 10vh;
+  left: 10vw;
+  width: 200px;
+  height: 200px;
+  z-index: 50;
+  pointer-events: none;
+}
