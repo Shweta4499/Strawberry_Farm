@@ -1,34 +1,40 @@
-// src/components/Navbar.jsx
-import React, { useState } from 'react'
-import '../styles/Navbar.css'  
+// components/Navbar.jsx
+import React, { useState } from "react";
+import "../styles/Navbar.css";
 
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+  const handleToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleLinkClick = (id) => {
+    setMenuOpen(false);
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">
-          🍓 <span>Fresh Strawberries</span>
-        </div>
+        <div className="logo">🍓 Strawberry</div>
 
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
-          <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
-          <li><a href="#recipes" onClick={() => setMenuOpen(false)}>Products</a></li>
-          <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <li><a onClick={() => handleLinkClick("home")}>Home</a></li>
+          <li><a onClick={() => handleLinkClick("about")}>About</a></li>
+          <li><a onClick={() => handleLinkClick("recipes")}>Products</a></li>
+          <li><a onClick={() => handleLinkClick("contact")}>Contact</a></li>
         </ul>
 
-        <div className="hamburger" onClick={toggleMenu}>
-          <div className={`line ${menuOpen ? 'rotate1' : ''}`}></div>
-          <div className={`line ${menuOpen ? 'fade' : ''}`}></div>
-          <div className={`line ${menuOpen ? 'rotate2' : ''}`}></div>
+        <div className="hamburger" onClick={handleToggle}>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
+
+export default Navbar;

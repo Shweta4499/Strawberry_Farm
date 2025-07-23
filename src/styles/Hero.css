@@ -1,5 +1,3 @@
-/* src/styles/Hero.css or wherever it's scoped */
-
 /* MAIN HERO SECTION */
 .hero-section {
   height: 100vh;
@@ -12,6 +10,7 @@
   position: relative;
   overflow: visible;
   z-index: 2;
+  max-width: 100%;
 }
 
 /* TEXT CONTAINER */
@@ -29,67 +28,16 @@
   margin-bottom: 1rem;
 }
 
-/* STRAWBERRY TITLE */
-.hero-title {
-  font-size: clamp(5rem, 10vw, 7rem);
-  font-weight: 900;
-  color: #d62828;
-  line-height: 1;
-  letter-spacing: 0.1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* STRAWBERRY LETTER STYLE */
-.strawberry-word {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
-  color: #d62828;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-/* CONTAINER THAT HOLDS THE 3D CANVAS */
-.letter-with-model {
-  position: relative;
-  width: clamp(6rem, 6vw, 8rem); /* ✅ Tighter fit */
-  height: clamp(6rem, 8vw, 7rem);
-  margin-left: -3rem; /* ✅ Reduces space between R and strawberry */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* INVISIBLE PLACEHOLDER LETTER FOR ALIGNMENT */
-.placeholder-letter {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* CANVAS ITSELF */
-.letter-with-model canvas {
-  width: 100% !important;
-  height: 100% !important;
-  filter: drop-shadow(0 0 10px rgba(214, 40, 40, 0.5));
-  pointer-events: none;
-  z-index: 10;
-}
-/* Add this to your CSS (e.g., Hero.css) */
-
+/* ADJECTIVE WRAPPER FOR TYPING EFFECT */
 .hero-adjective-wrapper {
   position: relative;
-  height: 6rem; /* Set based on font size */
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Hidden placeholder to prevent layout shift */
+/* Placeholder to prevent layout shift during typing */
 .typing-placeholder {
   visibility: hidden;
   font-size: clamp(3.5rem, 8vw, 6rem);
@@ -98,7 +46,7 @@
   letter-spacing: 0.05em;
 }
 
-/* Animated typing text */
+/* Actual animated typing text */
 .typing-text {
   position: absolute;
   font-size: clamp(3.5rem, 8vw, 6rem);
@@ -109,10 +57,142 @@
   white-space: nowrap;
   overflow: hidden;
 }
+/* Updated HERO TITLE */
+.hero-title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 900;
+  color: #d62828;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  flex-wrap: nowrap; /* ❌ Prevent splitting */
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap; /* ❌ Prevent wrap */
+  gap: 0.2rem; /* Optional spacing between letters */
+}
+
+/* STRAWBERRY CONTAINER */
+.strawberry-word {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+/* IMAGE LETTER (🍓) */
+.letter-with-model {
+  width: clamp(3rem, 5vw, 5rem);
+  height: clamp(3rem, 5vw, 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.1rem; /* reduce or remove negative margins */
+}
+
+/* Strawberry Image */
+.letter-with-model img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(214, 40, 40, 0.4));
+  pointer-events: none;
+}
 
 
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+/* ============================
+   RESPONSIVE OPTIMIZATION
+============================= */
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding: 6vh 1rem 2rem;
+    height: auto;           /* ✅ Allow natural height */
+    min-height: 40vh;       /* ✅ Ensures decent spacing */
+    align-items: center;    /* ✅ Center the content vertically */
+  }
+  .hero-adjective {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .letter-with-model {
+    width: clamp(4rem, 12vw, 6rem);
+    height: clamp(4rem, 12vw, 6rem);
+    margin-left: -1.5rem;
+  }
+}
+
+/* Prevent unwanted horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: clamp(1.2rem, 8vw, 4.5rem);
+    gap: 0.023rem;
+  }
+
+  .letter-with-model {
+    width: clamp(2.2rem, 7vw, 3.5rem);
+    height: clamp(2.2rem, 7vw, 3.5rem);
+    margin-left: -0.4rem; /* Reduced for tighter layout */
+  }
+
+  .strawberry-word {
+    gap: 0rem; 
+    flex-wrap: nowrap; /* Reduce extra spacing between letters */
+  }
+
+  .hero-adjective-wrapper {
+    height: 4.5rem;
+  }
+
+  .typing-placeholder,
+  .typing-text {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+}
+.hero-text-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Default: show detailed version */
+.detailed-version {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  flex-wrap: nowrap;
+}
+
+.fallback-version {
+  display: none;
+}
+
+/* Hide detailed letters and show fallback on tiny screens */
+@media (max-width: 400px) {
+  .detailed-version {
+    display: none;
+  }
+
+  .fallback-version {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.2rem, 7vw, 3rem);
+    font-weight: 800;
+    color: #d62828;
+    letter-spacing: 0.05em;
   }
 }

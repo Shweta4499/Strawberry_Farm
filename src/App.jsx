@@ -7,12 +7,11 @@ import Navbar from './components/Navbar'
 import StrawberryRain from './components/StrawberryRain'
 
 import StrawberryScrollAnimation from './components/StrawberryScrollAnimation'
-// import Gallery from './components/Gallery'
-// import Products from './components/Products'
 import Contact from './components/Contact'
  import FloatingStrawberry from './components/FloatingStrawberry'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+
 gsap.registerPlugin(ScrollTrigger)
 
 
@@ -26,11 +25,8 @@ function App() {
       <About />
       <Features />
       <Recipes/>
-      {/* <Gallery /> */}
-      {/* <Products /> */}
        <Contact /> 
        </div>
-      {/* <FloatingStrawberry /> */}
     </div>
   )
 }

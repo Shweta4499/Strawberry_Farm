@@ -1,37 +1,46 @@
-// src/components/AnimatedAdjectives.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-const adjectives = ['SWEET', 'FRESH', 'JUICY', 'ORGANIC', 'TASTY', 'LOCAL']
+const adjectives = ['SWEET', 'FRESH', 'JUICY', 'ORGANIC', 'TASTY', 'LOCAL'];
 
 export default function AnimatedAdjectives() {
-  const [displayText, setDisplayText] = useState('')
-  const [wordIndex, setWordIndex] = useState(0)
-  const [charIndex, setCharIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentWord = adjectives[wordIndex]
+    const currentWord = adjectives[wordIndex];
+    const typingSpeed = isDeleting ? 80 : 150;
 
     const timeout = setTimeout(() => {
-      if (charIndex < currentWord.length) {
-        setDisplayText(prev => prev + currentWord[charIndex])
-        setCharIndex(prev => prev + 1)
+      if (!isDeleting) {
+        // Typing
+        if (charIndex < currentWord.length) {
+          setDisplayText(prev => prev + currentWord.charAt(charIndex));
+          setCharIndex(prev => prev + 1);
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 1000);
+        }
       } else {
-        // Pause before deleting
-        setTimeout(() => {
-          setDisplayText('')
-          setCharIndex(0)
-          setWordIndex((wordIndex + 1) % adjectives.length)
-        }, 1000)
+        // Deleting
+        if (charIndex > 0) {
+          setDisplayText(prev => prev.slice(0, -1));
+          setCharIndex(prev => prev - 1);
+        } else {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % adjectives.length);
+        }
       }
-    }, 150)
+    }, typingSpeed);
 
-    return () => clearTimeout(timeout)
-  }, [charIndex, wordIndex])
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, wordIndex]);
 
   return (
     <div className="hero-adjective-wrapper">
       <span className="typing-placeholder">ORGANIC</span> {/* Longest word for layout */}
       <span className="typing-text">{displayText}</span>
     </div>
-  )
+  );
 }

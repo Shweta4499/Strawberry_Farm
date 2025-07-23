@@ -52,3 +52,26 @@
   max-width: 400px;
   object-fit: contain;
 }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .features-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .features-text ul {
+    padding-left: 0;
+  }
+
+  .features-text li {
+    padding-left: 0;
+  }
+
+  .features-text li::before {
+    position: static;
+    margin-right: 0.5rem;
+  }
+}
